@@ -3,6 +3,8 @@
 import { useState } from 'react'
 import Navigation from '@/app/components/ui/Navigation/Navigation'
 import ContactForm from '@/app/components/ui/ContactForm/ContactForm'
+import CountUpValue from '@/app/components/ui/CountUpValue/CountUpValue'
+import CountUpGroup from '@/app/components/ui/CountUpValue/CountUpGroup'
 import './template-2.css'
 
 export default function CDTemplate2() {
@@ -87,12 +89,12 @@ export default function CDTemplate2() {
 
         <div className="hero-layout-1__trust-bar">
           <div className="container">
-            <div className="hero-layout-1__trust-items">
-              <div className="hero-layout-1__trust-item"><span className="hero-layout-1__trust-icon">🏛️</span><div className="hero-layout-1__trust-value">{templateData.yearsAsProsecutor} Years</div><div className="hero-layout-1__trust-label">As Prosecutor</div></div>
-              <div className="hero-layout-1__trust-item"><span className="hero-layout-1__trust-icon">⚖️</span><div className="hero-layout-1__trust-value">{templateData.yearsOfExperience}</div><div className="hero-layout-1__trust-label">Total Experience</div></div>
-              <div className="hero-layout-1__trust-item"><span className="hero-layout-1__trust-icon">🏆</span><div className="hero-layout-1__trust-value">{templateData.casesWon}</div><div className="hero-layout-1__trust-label">Cases Won</div></div>
-              <div className="hero-layout-1__trust-item"><span className="hero-layout-1__trust-icon">⭐</span><div className="hero-layout-1__trust-value">5.0</div><div className="hero-layout-1__trust-label">Client Rating</div></div>
-            </div>
+            <CountUpGroup className="hero-layout-1__trust-items">
+              <div className="hero-layout-1__trust-item"><span className="hero-layout-1__trust-icon">🏛️</span><CountUpValue value={`${templateData.yearsAsProsecutor} Years`} className="hero-layout-1__trust-value" /><div className="hero-layout-1__trust-label">As Prosecutor</div></div>
+              <div className="hero-layout-1__trust-item"><span className="hero-layout-1__trust-icon">⚖️</span><CountUpValue value={templateData.yearsOfExperience} className="hero-layout-1__trust-value" /><div className="hero-layout-1__trust-label">Total Experience</div></div>
+              <div className="hero-layout-1__trust-item"><span className="hero-layout-1__trust-icon">🏆</span><CountUpValue value={templateData.casesWon} className="hero-layout-1__trust-value" /><div className="hero-layout-1__trust-label">Cases Won</div></div>
+              <div className="hero-layout-1__trust-item"><span className="hero-layout-1__trust-icon">⭐</span><CountUpValue value="5.0" className="hero-layout-1__trust-value" /><div className="hero-layout-1__trust-label">Client Rating</div></div>
+            </CountUpGroup>
           </div>
         </div>
       </div>

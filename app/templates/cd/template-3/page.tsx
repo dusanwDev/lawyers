@@ -15,7 +15,7 @@ export default function CDTemplate3() {
     yearsOfExperience: '40+',
     attorneysCount: '12',
     casesWon: '2,500+',
-    heroHeadline: 'New York's Premier High-Stakes Criminal Defense Firm',
+    heroHeadline: 'New York\'s Premier High-Stakes Criminal Defense Firm',
     heroSubheadline: 'Elite legal representation for complex federal and state criminal cases. When your freedom, reputation, and future are on the line.',
   }
 
@@ -33,7 +33,7 @@ export default function CDTemplate3() {
   ]
 
   const testimonials = [
-    { name: 'Fortune 500 Executive', case: 'Securities Fraud - Acquitted', rating: 5, text: 'Facing federal securities fraud charges threatened everything I built. Sterling & Associates assembled a team of experts, challenged the prosecution's case, and won my acquittal. Their expertise is unmatched.' },
+    { name: 'Fortune 500 Executive', case: 'Securities Fraud - Acquitted', rating: 5, text: 'Facing federal securities fraud charges threatened everything I built. Sterling & Associates assembled a team of experts, challenged the prosecution\'s case, and won my acquittal. Their expertise is unmatched.' },
     { name: 'Medical Professional', case: 'Healthcare Fraud - Dismissed', rating: 5, text: 'The government alleged a $10M fraud scheme. The legal team at Sterling thoroughly investigated, found fatal flaws in the indictment, and got all charges dismissed before trial.' },
     { name: 'Business Owner', case: 'Tax Evasion - Probation Only', rating: 5, text: 'I was facing 7 years in federal prison for tax charges. Sterling negotiated a resolution that resulted in probation with no jail time. Their skill saved my life and business.' }
   ]

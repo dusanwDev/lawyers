@@ -1,0 +1,8 @@
+.count-up-value {
+  font-weight: 700;
+  transition: opacity 0.3s ease;
+}
+
+.count-up-value--animated {
+  opacity: 1;
+}

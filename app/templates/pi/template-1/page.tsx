@@ -3,6 +3,8 @@
 import { useState, useEffect, useRef } from 'react'
 import Navigation from '@/app/components/ui/Navigation/Navigation'
 import ContactForm from '@/app/components/ui/ContactForm/ContactForm'
+import CountUpValue from '@/app/components/ui/CountUpValue/CountUpValue'
+import CountUpGroup from '@/app/components/ui/CountUpValue/CountUpGroup'
 import './template-1.css'
 
 // Count-up animation hook
@@ -322,7 +324,7 @@ export default function PITemplate1() {
         {/* Trust Bar */}
         <div className="hero-layout-1__trust-bar">
           <div className="container">
-            <div className="hero-layout-1__trust-items">
+            <CountUpGroup className="hero-layout-1__trust-items">
               <div className="hero-layout-1__trust-item">
                 <CountUpValue value={templateData.resultsHighlight} />
                 <div className="hero-layout-1__trust-label">Recovered for Clients</div>
@@ -339,7 +341,7 @@ export default function PITemplate1() {
                 <CountUpValue value="500+" />
                 <div className="hero-layout-1__trust-label">Cases Won</div>
               </div>
-            </div>
+            </CountUpGroup>
           </div>
         </div>
       </div>
