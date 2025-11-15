@@ -1,0 +1,29 @@
+/* PI Template 2 - Custom Styles */
+/* You can customize colors, spacing, and other styles specific to this template */
+
+/* Hero Layout 2 - Custom Overrides for PI Template 2 */
+.hero-layout-2 {
+  min-height: 100vh;
+}
+
+.hero-layout-2__overlay {
+  background-color: var(--color-bg-overlay);
+}
+
+.hero-layout-2__call-btn {
+  background-color: var(--color-secondary);
+  color: var(--color-primary-dark);
+}
+
+/* Practice Areas - Custom for PI Template 2 */
+.practice-areas {
+  background-color: var(--color-bg-primary);
+}
+
+/* Case Results - Custom for PI Template 2 */
+.case-results {
+  background-color: var(--color-bg-secondary);
+}
+
+/* Add your custom styles below this line */
+/* ---------------------------------------- */

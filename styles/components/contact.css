@@ -1,0 +1,179 @@
+/* Contact Section Styles - BEM Naming */
+
+.contact {
+  padding: var(--contact-section-padding, var(--spacing-3xl) 0);
+  background-color: var(--contact-section-bg, var(--color-bg-secondary));
+}
+
+.contact__header {
+  text-align: center;
+  margin-bottom: var(--spacing-2xl);
+}
+
+.contact__title {
+  font-size: var(--contact-title-size, var(--font-size-2xl));
+  margin-bottom: var(--spacing-sm);
+  color: var(--contact-title-color, var(--color-primary-dark));
+  font-weight: var(--contact-title-weight, var(--font-weight-bold));
+}
+
+.contact__subtitle {
+  font-size: var(--contact-subtitle-size, var(--font-size-lg));
+  color: var(--contact-subtitle-color, var(--color-text-secondary));
+}
+
+.contact__container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-2xl);
+  align-items: start;
+}
+
+.contact__info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+.contact__info-item {
+  display: flex;
+  align-items: start;
+  gap: var(--spacing-md);
+  padding: var(--contact-info-padding, var(--spacing-lg));
+  background-color: var(--contact-info-bg, #ffffff);
+  border-radius: var(--contact-info-radius, var(--border-radius-lg));
+  box-shadow: var(--contact-info-shadow, var(--shadow-sm));
+  transition: box-shadow var(--transition-normal);
+  border: var(--contact-info-border, none);
+}
+
+.contact__info-item:hover {
+  box-shadow: var(--contact-info-hover-shadow, var(--shadow-md));
+  border-color: var(--contact-info-hover-border, transparent);
+}
+
+.contact__info-icon {
+  font-size: var(--contact-info-icon-size, var(--font-size-2xl));
+  color: var(--contact-info-icon-color, var(--color-accent));
+  flex-shrink: 0;
+}
+
+.contact__info-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.contact__info-label {
+  font-size: var(--contact-info-label-size, 14px);
+  color: var(--contact-info-label-color, var(--color-text-secondary));
+  margin-bottom: 4px;
+  text-transform: var(--contact-info-label-transform, uppercase);
+  letter-spacing: var(--contact-info-label-spacing, 0.5px);
+}
+
+.contact__info-value {
+  font-size: var(--contact-info-value-size, var(--font-size-lg));
+  font-weight: var(--contact-info-value-weight, var(--font-weight-semibold));
+  color: var(--contact-info-value-color, var(--color-primary-dark));
+  text-decoration: none;
+}
+
+.contact__info-value:hover {
+  color: var(--contact-info-value-hover-color, var(--color-primary));
+}
+
+.contact__info-hours {
+  font-size: var(--font-size-base);
+  color: var(--color-text-secondary);
+  line-height: var(--line-height-relaxed);
+}
+
+.contact__map {
+  margin-top: var(--spacing-lg);
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+}
+
+.contact__map iframe {
+  width: 100%;
+  height: 300px;
+  border: 0;
+}
+
+/* Emergency Contact Banner */
+.contact__emergency {
+  margin-top: var(--spacing-2xl);
+  padding: var(--spacing-xl);
+  background-color: var(--color-accent);
+  color: var(--color-text-white);
+  border-radius: var(--border-radius-lg);
+  text-align: center;
+}
+
+.contact__emergency-title {
+  font-size: var(--font-size-xl);
+  margin-bottom: var(--spacing-sm);
+  color: var(--color-text-white);
+}
+
+.contact__emergency-phone {
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-secondary);
+  text-decoration: none;
+  display: inline-block;
+  margin-bottom: var(--spacing-xs);
+}
+
+.contact__emergency-phone:hover {
+  color: var(--color-secondary-light);
+}
+
+.contact__emergency-text {
+  font-size: var(--font-size-base);
+  opacity: 0.95;
+}
+
+/* Social Links */
+.contact__social {
+  display: flex;
+  gap: var(--spacing-md);
+  justify-content: center;
+  margin-top: var(--spacing-lg);
+}
+
+.contact__social-link {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
+  border-radius: 50%;
+  color: var(--color-primary);
+  font-size: var(--font-size-xl);
+  text-decoration: none;
+  transition: all var(--transition-normal);
+  box-shadow: var(--shadow-sm);
+}
+
+.contact__social-link:hover {
+  background-color: var(--color-primary);
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+/* Responsive */
+@media (max-width: 968px) {
+  .contact__container {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .contact__emergency-phone {
+    font-size: var(--font-size-2xl);
+  }
+}

@@ -1,0 +1,132 @@
+/* Practice Areas Styles - BEM Naming */
+
+.practice-areas {
+  padding: var(--pa-section-padding, var(--spacing-3xl) 0);
+  background: var(--pa-section-bg, var(--color-bg-primary));
+}
+
+.practice-areas__header {
+  text-align: center;
+  margin-bottom: var(--spacing-2xl);
+}
+
+.practice-areas__title {
+  font-size: var(--pa-title-size, var(--font-size-2xl));
+  margin-bottom: var(--spacing-sm);
+  color: var(--pa-title-color, var(--color-primary-dark));
+  font-weight: var(--pa-title-weight, 700);
+}
+
+.practice-areas__subtitle {
+  font-size: var(--pa-subtitle-size, var(--font-size-lg));
+  color: var(--pa-subtitle-color, var(--color-text-secondary));
+}
+
+.practice-areas__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--spacing-lg);
+}
+
+.practice-area {
+  background: var(--pa-card-bg, #ffffff);
+  border: var(--pa-card-border, 1px solid var(--color-border));
+  border-radius: var(--pa-card-radius, var(--border-radius-lg));
+  padding: var(--pa-card-padding, var(--spacing-lg));
+  transition: all var(--transition-normal);
+  text-align: center;
+  cursor: pointer;
+  box-shadow: var(--pa-card-shadow, none);
+}
+
+.practice-area:hover {
+  border-color: var(--pa-card-hover-border, var(--color-primary));
+  box-shadow: var(--pa-card-hover-shadow, var(--shadow-lg));
+  transform: var(--pa-card-hover-transform, translateY(-4px));
+  background: var(--pa-card-hover-bg, #ffffff);
+}
+
+.practice-area__icon {
+  font-size: var(--pa-icon-size, var(--font-size-4xl));
+  color: var(--pa-icon-color, var(--color-secondary));
+  margin-bottom: var(--spacing-md);
+  transition: var(--pa-icon-transition, none);
+}
+
+.practice-area:hover .practice-area__icon {
+  transform: var(--pa-icon-hover-transform, none);
+  filter: var(--pa-icon-hover-filter, none);
+}
+
+.practice-area__title {
+  font-size: var(--pa-card-title-size, var(--font-size-xl));
+  margin-bottom: var(--spacing-sm);
+  color: var(--pa-card-title-color, var(--color-primary-dark));
+  font-weight: var(--pa-card-title-weight, 600);
+}
+
+.practice-area__description {
+  font-size: var(--pa-card-desc-size, var(--font-size-base));
+  color: var(--pa-card-desc-color, var(--color-text-secondary));
+  line-height: var(--line-height-relaxed);
+  margin-bottom: var(--spacing-md);
+}
+
+.practice-area__link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  font-weight: var(--font-weight-semibold);
+  color: var(--pa-link-color, var(--color-primary));
+  text-decoration: none;
+  transition: gap var(--transition-fast);
+}
+
+.practice-area__link:hover {
+  gap: var(--spacing-sm);
+  color: var(--pa-link-hover-color, var(--color-primary));
+}
+
+.practice-area__arrow {
+  transition: transform var(--transition-fast);
+}
+
+.practice-area:hover .practice-area__arrow {
+  transform: translateX(4px);
+}
+
+/* Featured Practice Area */
+.practice-area--featured {
+  background-color: var(--color-primary-dark);
+  color: var(--color-text-white);
+  border-color: var(--color-primary-dark);
+  grid-column: span 2;
+}
+
+.practice-area--featured .practice-area__title {
+  color: var(--color-text-white);
+}
+
+.practice-area--featured .practice-area__description {
+  color: var(--color-text-white);
+  opacity: 0.9;
+}
+
+.practice-area--featured .practice-area__link {
+  color: var(--color-secondary);
+}
+
+.practice-area--featured:hover {
+  border-color: var(--color-primary);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .practice-areas__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .practice-area--featured {
+    grid-column: span 1;
+  }
+}

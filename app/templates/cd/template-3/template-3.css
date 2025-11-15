@@ -1,0 +1,36 @@
+/* CD Template 3 - Custom Styles */
+/* You can customize colors, spacing, and other styles specific to this template */
+
+/* Hero Layout 3 - Custom Overrides for CD Template 3 */
+.hero-layout-3__banner {
+  background-color: var(--color-primary-dark);
+}
+
+.hero-layout-3__headline {
+  color: var(--color-primary-dark);
+}
+
+.hero-layout-3__bullet::before {
+  color: var(--color-accent);
+}
+
+/* Practice Areas - Custom for CD Template 3 */
+.practice-areas {
+  background-color: var(--color-bg-primary);
+}
+
+/* Testimonials - Custom for CD Template 3 */
+.testimonials {
+  background-color: var(--color-bg-secondary);
+}
+
+/* Emergency CTA - Custom for CD Template 3 */
+.contact__emergency {
+  background-color: var(--color-accent);
+  padding: var(--spacing-xl);
+  border-radius: var(--border-radius-lg);
+  text-align: center;
+}
+
+/* Add your custom styles below this line */
+/* ---------------------------------------- */

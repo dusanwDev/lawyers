@@ -1,0 +1,497 @@
+/* ============================================
+   PI Template 1 - Chicago Personal Injury
+   Professional Navy & Gold Theme - ACTIVE
+   ============================================ */
+
+/* ============================================
+   HERO SECTION - Using CSS Custom Properties
+   ============================================ */
+
+.hero-layout-1 {
+  /* Hero Section Variables - Clean & Maintainable */
+  --hero-1-banner-bg: linear-gradient(90deg, var(--pi-navy) 0%, var(--pi-blue) 100%);
+  --hero-1-banner-padding: var(--spacing-md) 0;
+  --hero-1-banner-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+  /* Phone Number */
+  --hero-1-phone-color: var(--pi-accent-gold);
+  --hero-1-phone-size: 1.35rem;
+  --hero-1-phone-weight: 700;
+  --hero-1-phone-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+  --hero-1-phone-hover: var(--pi-gold);
+  --hero-1-phone-hover-transform: scale(1.05);
+
+  /* Headlines */
+  --hero-1-headline-color: var(--pi-navy);
+  --hero-1-headline-size: 3.25rem;
+  --hero-1-headline-weight: 800;
+  --hero-1-headline-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05);
+
+  --hero-1-subheadline-color: var(--pi-blue);
+  --hero-1-subheadline-size: 1.35rem;
+
+  /* Attorney Image */
+  --hero-1-image-border: 5px solid var(--pi-gold);
+  --hero-1-image-radius: 16px;
+  --hero-1-image-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  --hero-1-image-transition: transform var(--transition-normal);
+  --hero-1-image-hover-transform: scale(1.02);
+
+  /* Trust Bar */
+  --hero-1-trust-bg: linear-gradient(135deg, var(--pi-navy) 0%, var(--pi-blue) 100%);
+  --hero-1-trust-padding: var(--spacing-2xl) 0;
+  --hero-1-trust-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+
+  --hero-1-trust-value-color: var(--pi-accent-gold);
+  --hero-1-trust-value-size: 2.25rem;
+  --hero-1-trust-value-weight: 800;
+  --hero-1-trust-value-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+
+  --hero-1-trust-label-color: rgba(255, 255, 255, 0.9);
+  --hero-1-trust-label-size: 0.95rem;
+  --hero-1-trust-label-transform: uppercase;
+  --hero-1-trust-label-spacing: 0.5px;
+}
+
+/* ============================================
+   PRACTICE AREAS - Modern Card Design
+   ============================================ */
+
+.practice-areas {
+  background: linear-gradient(180deg, #ffffff 0%, #f8f9fa 100%);
+  padding: var(--spacing-3xl) 0;
+}
+
+.practice-areas__title {
+  color: var(--pi-navy);
+  font-size: 2.75rem;
+  font-weight: 800;
+  margin-bottom: var(--spacing-xl);
+}
+
+.practice-areas__subtitle {
+  color: var(--pi-blue);
+  font-size: 1.25rem;
+}
+
+/* Practice Area Cards - Elevated Design */
+.practice-area {
+  background: white;
+  border: 2px solid transparent;
+  border-radius: var(--border-radius-lg);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: all var(--transition-normal);
+  padding: var(--spacing-xl);
+  position: relative;
+  overflow: hidden;
+}
+
+.practice-area::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, var(--pi-gold), var(--pi-orange));
+  transform: scaleX(0);
+  transition: transform var(--transition-normal);
+}
+
+.practice-area:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(26, 54, 93, 0.15);
+  border-color: var(--pi-gold);
+}
+
+.practice-area:hover::before {
+  transform: scaleX(1);
+}
+
+.practice-area__icon {
+  font-size: 3.5rem;
+  transition: all var(--transition-normal);
+  display: inline-block;
+}
+
+.practice-area:hover .practice-area__icon {
+  transform: scale(1.2) rotate(5deg);
+}
+
+.practice-area__title {
+  color: var(--pi-navy);
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-top: var(--spacing-md);
+}
+
+.practice-area__link {
+  color: var(--pi-orange);
+  font-weight: 600;
+  transition: all var(--transition-fast);
+}
+
+.practice-area__link:hover {
+  color: var(--pi-electric-blue);
+  gap: var(--spacing-sm);
+}
+
+/* ============================================
+   TESTIMONIALS - Dark Premium Design
+   ============================================ */
+
+.testimonials {
+  background: linear-gradient(180deg, var(--pi-navy) 0%, var(--pi-charcoal) 100%);
+  padding: var(--spacing-3xl) 0;
+  position: relative;
+}
+
+.testimonials::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--pi-gold), transparent);
+}
+
+.testimonials__title {
+  color: white;
+  font-size: 2.75rem;
+  font-weight: 800;
+}
+
+.testimonials__subtitle {
+  color: var(--pi-accent-gold);
+  font-size: 1.25rem;
+}
+
+.testimonial {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(212, 165, 116, 0.2);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-xl);
+  transition: all var(--transition-normal);
+}
+
+.testimonial:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: var(--pi-gold);
+  transform: translateY(-4px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+}
+
+.testimonial__star {
+  color: var(--pi-accent-gold);
+  font-size: 1.5rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.testimonial__text {
+  color: rgba(255, 255, 255, 0.95);
+  font-size: 1.1rem;
+  line-height: 1.7;
+}
+
+.testimonial__author-name {
+  color: white;
+  font-weight: 700;
+}
+
+.testimonial__author-case {
+  color: var(--pi-gold);
+}
+
+/* ============================================
+   ATTORNEY BIO - Professional & Trustworthy
+   ============================================ */
+
+.attorney-bio {
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+  padding: var(--spacing-3xl) 0;
+}
+
+.attorney-bio__name {
+  color: var(--pi-navy);
+  font-size: 2.5rem;
+  font-weight: 800;
+}
+
+.attorney-bio__title {
+  color: var(--pi-blue);
+  font-size: 1.25rem;
+}
+
+.attorney-bio__highlight {
+  text-align: center;
+  transition: transform var(--transition-normal);
+}
+
+.attorney-bio__highlight:hover {
+  transform: scale(1.05);
+}
+
+.attorney-bio__highlight-value {
+  color: var(--pi-orange);
+  font-size: 3rem;
+  font-weight: 800;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.attorney-bio__highlight-label {
+  color: var(--pi-charcoal);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.9rem;
+}
+
+.attorney-bio__quote {
+  border-left: 5px solid var(--pi-gold);
+  background: linear-gradient(90deg, rgba(212, 165, 116, 0.1), transparent);
+  padding: var(--spacing-xl);
+  font-style: italic;
+  font-size: 1.15rem;
+  line-height: 1.8;
+  border-radius: 0 var(--border-radius-md) var(--border-radius-md) 0;
+}
+
+/* ============================================
+   CASE RESULTS - Impressive Results Display
+   ============================================ */
+
+.case-results {
+  background: linear-gradient(180deg, var(--pi-charcoal) 0%, #1a1f2e 100%);
+  padding: var(--spacing-3xl) 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.case-results::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50%;
+  height: 100%;
+  background: radial-gradient(circle at top right, rgba(212, 165, 116, 0.1), transparent);
+  pointer-events: none;
+}
+
+.case-results__title {
+  color: white;
+  font-size: 2.75rem;
+  font-weight: 800;
+}
+
+.case-results__subtitle {
+  color: var(--pi-accent-gold);
+}
+
+.case-result {
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid rgba(212, 165, 116, 0.3);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-xl);
+  transition: all var(--transition-normal);
+  position: relative;
+  overflow: hidden;
+}
+
+.case-result::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(212, 165, 116, 0.1), transparent);
+  opacity: 0;
+  transition: opacity var(--transition-normal);
+}
+
+.case-result:hover::before {
+  opacity: 1;
+}
+
+.case-result:hover {
+  border-color: var(--pi-gold);
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.case-result__amount {
+  color: var(--pi-accent-gold);
+  font-size: 3.5rem;
+  font-weight: 800;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.case-result__type {
+  color: white;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.case-result__description {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.case-result--featured {
+  background: linear-gradient(135deg, var(--pi-gold), var(--pi-orange));
+  border-color: var(--pi-accent-gold);
+  transform: scale(1.05);
+}
+
+.case-result--featured .case-result__amount {
+  color: var(--pi-navy);
+}
+
+.case-result--featured .case-result__type,
+.case-result--featured .case-result__description {
+  color: var(--pi-navy);
+}
+
+/* ============================================
+   BUTTONS & CTAs - Modern Gradient Buttons
+   ============================================ */
+
+.btn--primary {
+  background: linear-gradient(135deg, var(--pi-orange) 0%, var(--pi-electric-blue) 100%);
+  font-size: 1.25rem;
+  padding: 1.15rem 2.5rem;
+  border-radius: 50px;
+  box-shadow: 0 4px 15px rgba(237, 137, 54, 0.4);
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  transition: all var(--transition-normal);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn--primary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left var(--transition-slow);
+}
+
+.btn--primary:hover::before {
+  left: 100%;
+}
+
+.btn--primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(237, 137, 54, 0.6);
+}
+
+.btn--large {
+  font-size: 1.35rem;
+  padding: 1.25rem 3rem;
+}
+
+/* ============================================
+   CONTACT SECTION - Urgent & Eye-Catching
+   ============================================ */
+
+.contact {
+  padding: var(--spacing-3xl) 0;
+}
+
+.contact__emergency {
+  background: linear-gradient(135deg, var(--pi-orange) 0%, var(--pi-electric-blue) 100%);
+  padding: var(--spacing-2xl);
+  border-radius: var(--border-radius-xl);
+  text-align: center;
+  box-shadow: 0 15px 40px rgba(237, 137, 54, 0.3);
+  margin-bottom: var(--spacing-2xl);
+  animation: pulse-glow 2s infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 15px 40px rgba(237, 137, 54, 0.3);
+  }
+  50% {
+    box-shadow: 0 15px 50px rgba(237, 137, 54, 0.5);
+  }
+}
+
+.contact__emergency-title {
+  color: white;
+  font-size: 2rem;
+  font-weight: 800;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.contact__emergency-phone {
+  color: white;
+  font-size: 3.5rem;
+  font-weight: 900;
+  text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+  display: block;
+  margin: var(--spacing-md) 0;
+  letter-spacing: 2px;
+  transition: all var(--transition-fast);
+}
+
+.contact__emergency-phone:hover {
+  transform: scale(1.05);
+  text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+/* ============================================
+   FOOTER - Professional Dark Footer
+   ============================================ */
+
+.footer {
+  background: linear-gradient(180deg, var(--pi-navy) 0%, var(--pi-charcoal) 100%);
+  border-top: 3px solid var(--pi-gold);
+}
+
+.footer__logo {
+  color: var(--pi-accent-gold);
+  font-size: 1.75rem;
+  font-weight: 800;
+}
+
+.footer__description {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.footer__title {
+  color: var(--pi-gold);
+  font-weight: 700;
+}
+
+.footer__link {
+  color: rgba(255, 255, 255, 0.7);
+  transition: all var(--transition-fast);
+}
+
+.footer__link:hover {
+  color: var(--pi-orange);
+  padding-left: var(--spacing-xs);
+}
+
+.footer__social-link {
+  background: rgba(212, 165, 116, 0.2);
+  border: 1px solid var(--pi-gold);
+  transition: all var(--transition-normal);
+}
+
+.footer__social-link:hover {
+  background: var(--pi-gold);
+  color: var(--pi-navy);
+  transform: translateY(-3px);
+}
+
+/* ============================================
+   CUSTOM ADDITIONS - Add your own styles here
+   ============================================ */

@@ -1,0 +1,35 @@
+/* PI Template 3 - Custom Styles */
+/* You can customize colors, spacing, and other styles specific to this template */
+
+/* Hero Layout 3 - Custom Overrides for PI Template 3 */
+.hero-layout-3__banner {
+  background-color: var(--color-primary-dark);
+}
+
+.hero-layout-3__headline {
+  color: var(--color-primary-dark);
+}
+
+.hero-layout-3__bullet::before {
+  color: var(--color-accent);
+}
+
+/* Practice Areas - Custom for PI Template 3 */
+.practice-areas {
+  background-color: var(--color-bg-primary);
+}
+
+/* Testimonials - Custom for PI Template 3 */
+.testimonials {
+  background-color: var(--color-bg-secondary);
+}
+
+/* Contact Map - Custom for PI Template 3 */
+.contact__map iframe {
+  border-radius: var(--border-radius-md);
+  width: 100%;
+  max-width: 600px;
+}
+
+/* Add your custom styles below this line */
+/* ---------------------------------------- */
