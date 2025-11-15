@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import Navigation from '@/app/components/ui/Navigation/Navigation'
 import ContactForm from '@/app/components/ui/ContactForm/ContactForm'
+import CountUpValue from '@/app/components/ui/CountUpValue/CountUpValue'
 import './template-1.css'
 
 export default function PITemplate1() {
@@ -201,19 +202,19 @@ export default function PITemplate1() {
           <div className="container">
             <div className="hero-layout-1__trust-items">
               <div className="hero-layout-1__trust-item">
-                <div className="hero-layout-1__trust-value">{templateData.resultsHighlight}</div>
+                <CountUpValue value={templateData.resultsHighlight} className="hero-layout-1__trust-value" />
                 <div className="hero-layout-1__trust-label">Recovered for Clients</div>
               </div>
               <div className="hero-layout-1__trust-item">
-                <div className="hero-layout-1__trust-value">{templateData.yearsOfExperience}</div>
+                <CountUpValue value={templateData.yearsOfExperience} className="hero-layout-1__trust-value" />
                 <div className="hero-layout-1__trust-label">Years Experience</div>
               </div>
               <div className="hero-layout-1__trust-item">
-                <div className="hero-layout-1__trust-value">5.0</div>
+                <CountUpValue value="5.0" className="hero-layout-1__trust-value" />
                 <div className="hero-layout-1__trust-label">Client Rating</div>
               </div>
               <div className="hero-layout-1__trust-item">
-                <div className="hero-layout-1__trust-value">500+</div>
+                <CountUpValue value="500+" className="hero-layout-1__trust-value" />
                 <div className="hero-layout-1__trust-label">Cases Won</div>
               </div>
             </div>
