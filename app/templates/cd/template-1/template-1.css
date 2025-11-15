@@ -4,6 +4,46 @@
    ============================================ */
 
 /* ============================================
+   NAVIGATION - Dark & Professional
+   ============================================ */
+
+.navigation {
+  /* Dark navigation bar for criminal defense */
+  --nav-bg: linear-gradient(90deg, var(--cd-midnight) 0%, var(--cd-deep-navy) 100%);
+  --nav-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  --nav-border-bottom: 3px solid var(--cd-urgent-red);
+
+  /* Layout - Centered */
+  --nav-container-justify: center;
+  --nav-container-padding: var(--spacing-lg) 0;
+  --nav-container-gap: var(--spacing-2xl);
+  --nav-menu-gap: var(--spacing-xl);
+
+  /* Logo */
+  --nav-logo-size: 1.75rem;
+  --nav-logo-weight: 900;
+  --nav-logo-color: var(--cd-gold);
+  --nav-logo-hover-color: var(--cd-urgent-red);
+
+  /* Links - Button style */
+  --nav-link-size: 1rem;
+  --nav-link-weight: 600;
+  --nav-link-color: var(--cd-platinum);
+  --nav-link-hover-color: white;
+  --nav-link-padding: 0.75rem 1.5rem;
+  --nav-link-radius: 6px;
+  --nav-link-hover-bg: rgba(229, 62, 62, 0.2);
+
+  /* Underline effect - Disabled for button style */
+  --nav-link-underline-display: none;
+
+  /* Mobile toggle */
+  --nav-toggle-color: var(--cd-gold);
+  --nav-mobile-bg: var(--cd-midnight);
+  --nav-mobile-shadow: 0 8px 20px rgba(229, 62, 62, 0.3);
+}
+
+/* ============================================
    HERO SECTION - Urgent & Professional
    ============================================ */
 

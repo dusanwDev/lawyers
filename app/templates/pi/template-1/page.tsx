@@ -22,7 +22,8 @@ export default function PITemplate1() {
     yearsOfExperience: '25+',
     resultsHighlight: '$50M+',
     heroHeadline: 'Chicago Personal Injury Lawyer Fighting for Your Rights',
-    heroSubheadline: 'Experienced legal representation for car accidents, slip & fall, and medical malpractice cases. No fees unless we win.',
+    heroSubheadline: 'Experienced legal representation for car accidents, slip & fall, and medical malpractice cases.',
+    heroSubheadline2:'No fees unless we win',
     primaryCtaText: 'Get Your Free Case Review',
   }
 
@@ -142,17 +143,10 @@ export default function PITemplate1() {
           <div className="container">
             <div className="hero-layout-1__banner-content">
               <div className="hero-layout-1__banner-left">
-                <span className="hero-layout-1__banner-item">
-                  ⏰ Available 24/7
-                </span>
-                <span className="hero-layout-1__banner-item">
-                  💼 Free Consultation
-                </span>
-                <span className="hero-layout-1__banner-item">
-                  ✓ No Fee Unless We Win
-                </span>
+                LOGO
               </div>
                 <a href={`tel:${phoneNumber.replace(/\D/g, '')}`} className="btn btn--primary">
+                <span className="btn__icon">📞</span>
                 {ctaText} {phoneNumber}
               </a>
             </div>
@@ -171,21 +165,24 @@ export default function PITemplate1() {
           <div className="hero-layout-1__content">
             {/* Left Column - Attorney Image */}
             <div className="hero-layout-1__attorney">
-              <img
+              
+              <h1 className="hero-layout-1__headline">{templateData.heroHeadline}</h1>
+              <p className="hero-layout-1__subheadline">{templateData.heroSubheadline}</p>
+              <p className="hero-layout-1__subheadline">{templateData.heroSubheadline2}</p>
+
+              {/* <img
                 src={templateData.attorneyImage}
                 alt={templateData.attorneyName}
                 className="hero-layout-1__attorney-image"
-              />
-              <p className="hero-layout-1__attorney-caption">
+              /> */}
+              {/* <p className="hero-layout-1__attorney-caption">
                 <span className="hero-layout-1__attorney-name">{templateData.attorneyName}</span>
                 {' '}— {templateData.primaryPracticeArea} Lawyer in {templateData.cityName}
-              </p>
+              </p> */}
             </div>
 
             {/* Right Column - Text + Form */}
             <div className="hero-layout-1__text">
-              <h1 className="hero-layout-1__headline">{templateData.heroHeadline}</h1>
-              <p className="hero-layout-1__subheadline">{templateData.heroSubheadline}</p>
 
               <ContactForm
                 variant="hero"
@@ -194,11 +191,7 @@ export default function PITemplate1() {
                 ctaText={templateData.primaryCtaText}
               />
 
-              <div className="hero-layout-1__reassurance">
-                <p className="hero-layout-1__reassurance-text">
-                  💪 No Fee Unless We Win Your Case
-                </p>
-              </div>
+
             </div>
           </div>
         </div>
@@ -208,22 +201,18 @@ export default function PITemplate1() {
           <div className="container">
             <div className="hero-layout-1__trust-items">
               <div className="hero-layout-1__trust-item">
-                <span className="hero-layout-1__trust-icon">💰</span>
                 <div className="hero-layout-1__trust-value">{templateData.resultsHighlight}</div>
                 <div className="hero-layout-1__trust-label">Recovered for Clients</div>
               </div>
               <div className="hero-layout-1__trust-item">
-                <span className="hero-layout-1__trust-icon">⚖️</span>
                 <div className="hero-layout-1__trust-value">{templateData.yearsOfExperience}</div>
                 <div className="hero-layout-1__trust-label">Years Experience</div>
               </div>
               <div className="hero-layout-1__trust-item">
-                <span className="hero-layout-1__trust-icon">⭐</span>
                 <div className="hero-layout-1__trust-value">5.0</div>
                 <div className="hero-layout-1__trust-label">Client Rating</div>
               </div>
               <div className="hero-layout-1__trust-item">
-                <span className="hero-layout-1__trust-icon">🏆</span>
                 <div className="hero-layout-1__trust-value">500+</div>
                 <div className="hero-layout-1__trust-label">Cases Won</div>
               </div>

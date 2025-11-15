@@ -79,10 +79,84 @@ The hero.css (and other component files) now use **CSS custom properties** with 
 --hero-1-trust-label-spacing    /* Letter spacing */
 ```
 
+## 🧭 Available Navigation Variables
+
+### Navigation Bar
+```css
+--nav-bg                        /* Background (color or gradient) */
+--nav-shadow                    /* Box shadow */
+--nav-border-bottom             /* Border bottom */
+--nav-scrolled-shadow           /* Shadow when scrolled */
+```
+
+### Layout & Container
+```css
+--nav-container-justify         /* justify-content (space-between, center, etc.) */
+--nav-container-padding         /* Container padding */
+--nav-container-gap             /* Gap between logo and menu */
+--nav-container-direction       /* Flex direction (row, column) */
+
+--nav-menu-gap                  /* Gap between menu items */
+--nav-menu-direction            /* Menu flex direction (row, column) */
+--nav-menu-wrap                 /* Flex wrap (nowrap, wrap) */
+--nav-menu-justify              /* Menu justify-content */
+```
+
+### Logo
+```css
+--nav-logo-size                 /* Logo font size */
+--nav-logo-weight               /* Logo font weight */
+--nav-logo-color                /* Logo color */
+--nav-logo-hover-color          /* Logo hover color */
+```
+
+### Navigation Links
+```css
+--nav-link-size                 /* Link font size */
+--nav-link-weight               /* Link font weight */
+--nav-link-color                /* Link color */
+--nav-link-hover-color          /* Link hover color */
+--nav-link-padding              /* Link padding */
+--nav-link-radius               /* Link border radius (for button style) */
+--nav-link-bg                   /* Link background */
+--nav-link-hover-bg             /* Link hover background */
+
+--nav-link-underline-height     /* Underline height */
+--nav-link-underline-color      /* Underline color */
+--nav-link-underline-width      /* Underline width (e.g., 80%) */
+--nav-link-underline-position   /* Underline position (e.g., -4px) */
+--nav-link-underline-display    /* Show/hide underline (block, none) */
+```
+
+### Mobile Menu
+```css
+--nav-toggle-color              /* Mobile toggle icon color */
+--nav-mobile-bg                 /* Mobile menu background */
+--nav-mobile-shadow             /* Mobile menu shadow */
+```
+
 ## 💡 Complete Template Example
 
 ### PI Template (Professional Blue & Gold)
 ```css
+.navigation {
+  /* Clean white navigation with navy accents */
+  --nav-bg: #ffffff;
+  --nav-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  --nav-border-bottom: 2px solid var(--pi-gold);
+
+  /* Layout - Traditional left-right */
+  --nav-container-justify: space-between;
+  --nav-menu-justify: flex-end;
+
+  /* Styling */
+  --nav-logo-color: var(--pi-navy);
+  --nav-link-color: var(--pi-charcoal);
+  --nav-link-hover-color: var(--pi-navy);
+  --nav-link-underline-color: var(--pi-gold);
+  --nav-link-underline-width: 80%;
+}
+
 .hero-layout-1 {
   /* Banner - Gradient navy to blue */
   --hero-1-banner-bg: linear-gradient(90deg, #1a365d, #2c5282);
@@ -113,6 +187,26 @@ The hero.css (and other component files) now use **CSS custom properties** with 
 
 ### CD Template (Urgent Red & Dark)
 ```css
+.navigation {
+  /* Dark navigation bar for criminal defense */
+  --nav-bg: linear-gradient(90deg, var(--cd-midnight) 0%, var(--cd-deep-navy) 100%);
+  --nav-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  --nav-border-bottom: 3px solid var(--cd-urgent-red);
+
+  /* Layout - Centered with button-style links */
+  --nav-container-justify: center;
+  --nav-menu-gap: var(--spacing-xl);
+
+  /* Styling - Button style links */
+  --nav-logo-color: var(--cd-gold);
+  --nav-link-color: var(--cd-platinum);
+  --nav-link-hover-color: white;
+  --nav-link-padding: 0.75rem 1.5rem;
+  --nav-link-radius: 6px;
+  --nav-link-hover-bg: rgba(229, 62, 62, 0.2);
+  --nav-link-underline-display: none; /* Disable underline for button style */
+}
+
 .hero-layout-1 {
   /* Banner - Very dark */
   --hero-1-banner-bg: linear-gradient(90deg, #1a202c, #1e3a5f);
@@ -139,6 +233,51 @@ The hero.css (and other component files) now use **CSS custom properties** with 
   --hero-1-trust-value-color: #e53e3e;
   --hero-1-trust-value-size: 2.5rem;
   --hero-1-trust-value-weight: 900;
+}
+```
+
+## 🎨 Navigation Layout Examples
+
+### Centered Navigation (Modern)
+```css
+.navigation {
+  --nav-container-justify: center;
+  --nav-menu-gap: var(--spacing-xl);
+}
+```
+
+### Left Logo, Right Menu (Traditional)
+```css
+.navigation {
+  --nav-container-justify: space-between;
+  --nav-menu-justify: flex-end;
+}
+```
+
+### Button-Style Links
+```css
+.navigation {
+  --nav-link-padding: 0.75rem 1.5rem;
+  --nav-link-radius: 6px;
+  --nav-link-hover-bg: rgba(0, 0, 0, 0.1);
+  --nav-link-underline-display: none;
+}
+```
+
+### Spaced Out Links
+```css
+.navigation {
+  --nav-menu-gap: var(--spacing-2xl);
+  --nav-link-padding: var(--spacing-md) var(--spacing-lg);
+}
+```
+
+### Compact Navigation
+```css
+.navigation {
+  --nav-container-padding: var(--spacing-sm) 0;
+  --nav-menu-gap: var(--spacing-md);
+  --nav-link-padding: var(--spacing-xs) var(--spacing-sm);
 }
 ```
 

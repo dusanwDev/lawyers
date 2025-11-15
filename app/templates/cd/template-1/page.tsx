@@ -24,12 +24,11 @@ export default function CDTemplate1() {
     {
       title: 'DUI Defense',
       description: 'Pulled over for DUI? Don\'t talk to police without an attorney. We challenge breathalyzer results and protect your license.',
-      icon: '🚨'
+      
     },
     {
       title: 'Drug Charges',
       description: 'From possession to trafficking, we fight drug charges aggressively. Protect your freedom and future.',
-      icon: '⚖️'
     },
     {
       title: 'Assault & Battery',
