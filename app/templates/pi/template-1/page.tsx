@@ -1,14 +1,110 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Navigation from '@/app/components/ui/Navigation/Navigation'
 import ContactForm from '@/app/components/ui/ContactForm/ContactForm'
 import CountUpValue from '@/app/components/ui/CountUpValue/CountUpValue'
 import CountUpGroup from '@/app/components/ui/CountUpValue/CountUpGroup'
 import './template-1.css'
 
+// Count-up animation hook
+function useCountUp(end: number, duration: number = 2000, isVisible: boolean = false) {
+  const [count, setCount] = useState(0)
+  const [hasAnimated, setHasAnimated] = useState(false)
+
+  useEffect(() => {
+    if (!isVisible || hasAnimated) return
+
+    setHasAnimated(true)
+    const startTime = Date.now()
+    const endValue = end
+
+    const animate = () => {
+      const now = Date.now()
+      const progress = Math.min((now - startTime) / duration, 1)
+
+      // Easing function for smooth animation
+      const easeOutQuart = 1 - Math.pow(1 - progress, 4)
+      const current = Math.floor(easeOutQuart * endValue)
+
+      setCount(current)
+
+      if (progress < 1) {
+        requestAnimationFrame(animate)
+      }
+    }
+
+    requestAnimationFrame(animate)
+  }, [end, duration, isVisible, hasAnimated])
+
+  return count
+}
+
+// Component to handle individual count-up values
+function CountUpValue({ value }: { value: string }) {
+  const [isVisible, setIsVisible] = useState(false)
+  const ref = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true)
+        }
+      },
+      { threshold: 0.1 }
+    )
+
+    if (ref.current) {
+      observer.observe(ref.current)
+    }
+
+    return () => {
+      if (ref.current) {
+        observer.unobserve(ref.current)
+      }
+    }
+  }, [])
+
+  // Parse the value to extract number, prefix, and suffix
+  const parseValue = (val: string) => {
+    // Match pattern like "$50M+", "25+", "5.0", "500+"
+    const match = val.match(/^(\$)?(\d+(?:\.\d+)?)(M|K|\+)?(\+)?$/i)
+
+    if (match) {
+      const prefix = match[1] || ''
+      const number = parseFloat(match[2])
+      const suffix = (match[3] || '') + (match[4] || '')
+      return { prefix, number, suffix }
+    }
+
+    // Fallback for plain numbers
+    const numMatch = val.match(/(\d+(?:\.\d+)?)/)
+    if (numMatch) {
+      return { prefix: '', number: parseFloat(numMatch[1]), suffix: '' }
+    }
+
+    return { prefix: '', number: 0, suffix: val }
+  }
+
+  const { prefix, number, suffix } = parseValue(value)
+  const currentCount = useCountUp(number, 2000, isVisible)
+
+  // Format the number (preserve decimal for values like 5.0)
+  const formattedNumber = value.includes('.')
+    ? currentCount.toFixed(1)
+    : currentCount.toString()
+
+  return (
+    <div ref={ref} className="hero-layout-1__trust-value">
+      {prefix}{formattedNumber}{suffix}
+    </div>
+  )
+}
+
 export default function PITemplate1() {
   const [activeFaq, setActiveFaq] = useState<number | null>(null)
+  const [currentTestimonial, setCurrentTestimonial] = useState(0)
   const logoText = 'Law Firm Name';
   const phoneNumber = '(555) 123-4567';
   const ctaText = 'CALL NOW';
@@ -80,6 +176,24 @@ export default function PITemplate1() {
       case: 'Medical Malpractice',
       rating: 5,
       text: 'Dealing with a medical malpractice case is complex, but this firm made it manageable. Their expertise and dedication resulted in a favorable outcome.'
+    },
+    {
+      name: 'Amanda Davis',
+      case: 'Workplace Injury',
+      rating: 5,
+      text: 'I was injured at work and didn\'t know where to turn. This firm guided me through the entire process and secured the compensation I needed to support my family during recovery.'
+    },
+    {
+      name: 'David Thompson',
+      case: 'Wrongful Death',
+      rating: 5,
+      text: 'After losing my father due to negligence, this firm provided compassionate support and fought for justice. They made a difficult time more bearable and got us the settlement we deserved.'
+    },
+    {
+      name: 'Lisa Anderson',
+      case: 'Dog Bite',
+      rating: 5,
+      text: 'When my daughter was bitten by a neighbor\'s dog, this firm took immediate action. They were professional, caring, and secured compensation for her medical bills and trauma.'
     }
   ]
 
@@ -135,6 +249,15 @@ export default function PITemplate1() {
       answer: 'The timeline varies depending on the complexity of your case, the severity of injuries, and whether settlement negotiations are successful. Simple cases may resolve in a few months, while complex cases can take 1-2 years or longer.'
     }
   ]
+
+  // Carousel navigation functions
+  const nextTestimonial = () => {
+    setCurrentTestimonial((prev) => (prev + 1) % testimonials.length)
+  }
+
+  const prevTestimonial = () => {
+    setCurrentTestimonial((prev) => (prev - 1 + testimonials.length) % testimonials.length)
+  }
 
   return (
     <>
@@ -203,19 +326,19 @@ export default function PITemplate1() {
           <div className="container">
             <CountUpGroup className="hero-layout-1__trust-items">
               <div className="hero-layout-1__trust-item">
-                <CountUpValue value={templateData.resultsHighlight} className="hero-layout-1__trust-value" />
+                <CountUpValue value={templateData.resultsHighlight} />
                 <div className="hero-layout-1__trust-label">Recovered for Clients</div>
               </div>
               <div className="hero-layout-1__trust-item">
-                <CountUpValue value={templateData.yearsOfExperience} className="hero-layout-1__trust-value" />
+                <CountUpValue value={templateData.yearsOfExperience} />
                 <div className="hero-layout-1__trust-label">Years Experience</div>
               </div>
               <div className="hero-layout-1__trust-item">
-                <CountUpValue value="5.0" className="hero-layout-1__trust-value" />
+                <CountUpValue value="5.0" />
                 <div className="hero-layout-1__trust-label">Client Rating</div>
               </div>
               <div className="hero-layout-1__trust-item">
-                <CountUpValue value="500+" className="hero-layout-1__trust-value" />
+                <CountUpValue value="500+" />
                 <div className="hero-layout-1__trust-label">Cases Won</div>
               </div>
             </CountUpGroup>
@@ -258,25 +381,59 @@ export default function PITemplate1() {
             </p>
           </div>
 
-          <div className="testimonials__grid">
-            {testimonials.map((testimonial, index) => (
-              <div key={index} className="testimonial">
-                <div className="testimonial__rating">
-                  {[...Array(5)].map((_, i) => (
-                    <span key={i} className="testimonial__star">★</span>
-                  ))}
-                </div>
-                <p className="testimonial__text">{testimonial.text}</p>
-                <div className="testimonial__author">
-                  <div className="testimonial__avatar">
-                    {testimonial.name.charAt(0)}
+          <div className="testimonials__carousel">
+            <button
+              className="testimonials__nav testimonials__nav--left"
+              onClick={prevTestimonial}
+              aria-label="Previous testimonial"
+            >
+              ‹
+            </button>
+
+            <div className="testimonials__carousel-container">
+              <div
+                className="testimonials__carousel-track"
+                style={{ transform: `translateX(-${currentTestimonial * 100}%)` }}
+              >
+                {testimonials.map((testimonial, index) => (
+                  <div key={index} className="testimonial">
+                    <div className="testimonial__rating">
+                      {[...Array(5)].map((_, i) => (
+                        <span key={i} className="testimonial__star">★</span>
+                      ))}
+                    </div>
+                    <p className="testimonial__text">{testimonial.text}</p>
+                    <div className="testimonial__author">
+                      <div className="testimonial__avatar">
+                        {testimonial.name.charAt(0)}
+                      </div>
+                      <div className="testimonial__author-info">
+                        <div className="testimonial__author-name">{testimonial.name}</div>
+                        <div className="testimonial__author-case">{testimonial.case}</div>
+                      </div>
+                    </div>
                   </div>
-                  <div className="testimonial__author-info">
-                    <div className="testimonial__author-name">{testimonial.name}</div>
-                    <div className="testimonial__author-case">{testimonial.case}</div>
-                  </div>
-                </div>
+                ))}
               </div>
+            </div>
+
+            <button
+              className="testimonials__nav testimonials__nav--right"
+              onClick={nextTestimonial}
+              aria-label="Next testimonial"
+            >
+              ›
+            </button>
+          </div>
+
+          <div className="testimonials__dots">
+            {testimonials.map((_, index) => (
+              <button
+                key={index}
+                className={`testimonials__dot ${index === currentTestimonial ? 'testimonials__dot--active' : ''}`}
+                onClick={() => setCurrentTestimonial(index)}
+                aria-label={`Go to testimonial ${index + 1}`}
+              />
             ))}
           </div>
         </div>
@@ -292,15 +449,7 @@ export default function PITemplate1() {
                 alt={templateData.attorneyName}
                 className="attorney-bio__image"
               />
-              <div className="attorney-bio__credentials">
-                <h4 className="attorney-bio__credentials-title">Credentials</h4>
-                <ul className="attorney-bio__credentials-list">
-                  <li className="attorney-bio__credential">Licensed in Illinois</li>
-                  <li className="attorney-bio__credential">Super Lawyers Rising Star</li>
-                  <li className="attorney-bio__credential">Trial Lawyers Association</li>
-                  <li className="attorney-bio__credential">Million Dollar Advocates Forum</li>
-                </ul>
-              </div>
+
             </div>
 
             <div className="attorney-bio__content">
@@ -325,7 +474,14 @@ export default function PITemplate1() {
                   <div className="attorney-bio__highlight-label">Cases Won</div>
                 </div>
               </div>
-
+              <div className="attorney-bio__credentials">
+                <ul className="attorney-bio__credentials-list">
+                  <p className="attorney-bio__credential">Licensed in Illinois</p>
+                  <p className="attorney-bio__credential">Super Lawyers Rising Star</p>
+                  <p className="attorney-bio__credential">Trial Lawyers Association</p>
+                  <p className="attorney-bio__credential">Million Dollar Advocates Forum</p>
+                </ul>
+              </div>
               <p className="attorney-bio__text">
                 With over {templateData.yearsOfExperience} years of experience representing injury victims
                 throughout {templateData.cityName}, {templateData.attorneyName} has built a reputation for
@@ -340,12 +496,12 @@ export default function PITemplate1() {
                 and falls, medical malpractice, and other personal injury cases.
               </p>
 
-              <div className="attorney-bio__quote">
+              {/* <div className="attorney-bio__quote">
                 "My mission is simple: to fight for justice and maximum compensation for every client.
                 When you're injured due to someone else's negligence, you deserve a lawyer who will stand
                 up for your rights and never back down."
                 <br />— {templateData.attorneyName}
-              </div>
+              </div> */}
 
               <div className="attorney-bio__cta">
                 <a href="#contact" className="btn btn--primary btn--large">
@@ -358,7 +514,7 @@ export default function PITemplate1() {
       </section>
 
       {/* Case Results Section */}
-      <section id="results" className="case-results">
+      {/* <section id="results" className="case-results">
         <div className="container">
           <div className="case-results__header">
             <h2 className="case-results__title">Proven Results</h2>
@@ -383,7 +539,7 @@ export default function PITemplate1() {
             </p>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Process Section */}
       <section className="process">

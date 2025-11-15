@@ -28,6 +28,98 @@
   gap: var(--spacing-lg);
 }
 
+/* Carousel Styles */
+.testimonials__carousel {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
+}
+
+.testimonials__carousel-container {
+  flex: 1;
+  overflow: hidden;
+  border-radius: var(--border-radius-lg);
+}
+
+.testimonials__carousel-track {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.testimonials__carousel .testimonial {
+  min-width: 100%;
+  flex-shrink: 0;
+}
+
+.testimonials__nav {
+  background: var(--color-primary);
+  color: white;
+  border: none;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  font-size: 32px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-normal);
+  box-shadow: var(--shadow-md);
+  flex-shrink: 0;
+  line-height: 1;
+  padding: 0;
+  z-index: 2;
+}
+
+.testimonials__nav:hover {
+  background: var(--color-primary-dark);
+  box-shadow: var(--shadow-lg);
+  transform: scale(1.05);
+}
+
+.testimonials__nav:active {
+  transform: scale(0.95);
+}
+
+.testimonials__nav--left {
+  margin-right: var(--spacing-sm);
+}
+
+.testimonials__nav--right {
+  margin-left: var(--spacing-sm);
+}
+
+/* Dots Navigation */
+.testimonials__dots {
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  margin-top: var(--spacing-lg);
+}
+
+.testimonials__dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid var(--color-primary);
+  background: transparent;
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  padding: 0;
+}
+
+.testimonials__dot:hover {
+  background: var(--color-primary-light);
+  transform: scale(1.2);
+}
+
+.testimonials__dot--active {
+  background: var(--color-primary);
+  transform: scale(1.3);
+}
+
 .testimonial {
   background: var(--test-card-bg, #ffffff);
   padding: var(--test-card-padding, var(--spacing-lg));
@@ -164,5 +256,28 @@
 @media (max-width: 768px) {
   .testimonials__grid {
     grid-template-columns: 1fr;
+  }
+
+  .testimonials__nav {
+    width: 40px;
+    height: 40px;
+    font-size: 28px;
+  }
+
+  .testimonials__carousel {
+    gap: var(--spacing-sm);
+  }
+
+  .testimonials__nav--left {
+    margin-right: 0;
+  }
+
+  .testimonials__nav--right {
+    margin-left: 0;
+  }
+
+  .testimonials__dot {
+    width: 10px;
+    height: 10px;
   }
 }
