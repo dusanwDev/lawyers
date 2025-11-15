@@ -385,15 +385,7 @@ export default function PITemplate1() {
                 alt={templateData.attorneyName}
                 className="attorney-bio__image"
               />
-              <div className="attorney-bio__credentials">
-                <h4 className="attorney-bio__credentials-title">Credentials</h4>
-                <ul className="attorney-bio__credentials-list">
-                  <li className="attorney-bio__credential">Licensed in Illinois</li>
-                  <li className="attorney-bio__credential">Super Lawyers Rising Star</li>
-                  <li className="attorney-bio__credential">Trial Lawyers Association</li>
-                  <li className="attorney-bio__credential">Million Dollar Advocates Forum</li>
-                </ul>
-              </div>
+
             </div>
 
             <div className="attorney-bio__content">
@@ -418,7 +410,14 @@ export default function PITemplate1() {
                   <div className="attorney-bio__highlight-label">Cases Won</div>
                 </div>
               </div>
-
+              <div className="attorney-bio__credentials">
+                <ul className="attorney-bio__credentials-list">
+                  <p className="attorney-bio__credential">Licensed in Illinois</p>
+                  <p className="attorney-bio__credential">Super Lawyers Rising Star</p>
+                  <p className="attorney-bio__credential">Trial Lawyers Association</p>
+                  <p className="attorney-bio__credential">Million Dollar Advocates Forum</p>
+                </ul>
+              </div>
               <p className="attorney-bio__text">
                 With over {templateData.yearsOfExperience} years of experience representing injury victims
                 throughout {templateData.cityName}, {templateData.attorneyName} has built a reputation for
@@ -433,12 +432,12 @@ export default function PITemplate1() {
                 and falls, medical malpractice, and other personal injury cases.
               </p>
 
-              <div className="attorney-bio__quote">
+              {/* <div className="attorney-bio__quote">
                 "My mission is simple: to fight for justice and maximum compensation for every client.
                 When you're injured due to someone else's negligence, you deserve a lawyer who will stand
                 up for your rights and never back down."
                 <br />— {templateData.attorneyName}
-              </div>
+              </div> */}
 
               <div className="attorney-bio__cta">
                 <a href="#contact" className="btn btn--primary btn--large">
@@ -451,7 +450,7 @@ export default function PITemplate1() {
       </section>
 
       {/* Case Results Section */}
-      <section id="results" className="case-results">
+      {/* <section id="results" className="case-results">
         <div className="container">
           <div className="case-results__header">
             <h2 className="case-results__title">Proven Results</h2>
@@ -476,7 +475,7 @@ export default function PITemplate1() {
             </p>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Process Section */}
       <section className="process">
