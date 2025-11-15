@@ -103,9 +103,27 @@ function CountUpValue({ value }: { value: string }) {
 export default function PITemplate1() {
   const [activeFaq, setActiveFaq] = useState<number | null>(null)
   const [currentTestimonial, setCurrentTestimonial] = useState(0)
+  const [isMobile, setIsMobile] = useState(false)
   const logoText = 'Law Firm Name';
   const phoneNumber = '(555) 123-4567';
   const ctaText = 'CALL NOW';
+
+  // Detect mobile screen size
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768)
+    }
+
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
+
+  // Reset carousel position when switching between mobile/desktop
+  useEffect(() => {
+    setCurrentTestimonial(0)
+  }, [isMobile])
 
   // Placeholder data - Replace with real data
   const templateData = {
@@ -249,12 +267,16 @@ export default function PITemplate1() {
   ]
 
   // Carousel navigation functions
+  // Number of testimonials to show at once (3 on desktop, 1 on mobile)
+  const testimonialsPerSlide = isMobile ? 1 : 3
+  const totalSlides = Math.ceil(testimonials.length / testimonialsPerSlide)
+
   const nextTestimonial = () => {
-    setCurrentTestimonial((prev) => (prev + 1) % testimonials.length)
+    setCurrentTestimonial((prev) => (prev + 1) % totalSlides)
   }
 
   const prevTestimonial = () => {
-    setCurrentTestimonial((prev) => (prev - 1 + testimonials.length) % testimonials.length)
+    setCurrentTestimonial((prev) => (prev - 1 + totalSlides) % totalSlides)
   }
 
   return (
@@ -425,12 +447,12 @@ export default function PITemplate1() {
           </div>
 
           <div className="testimonials__dots">
-            {testimonials.map((_, index) => (
+            {[...Array(totalSlides)].map((_, index) => (
               <button
                 key={index}
                 className={`testimonials__dot ${index === currentTestimonial ? 'testimonials__dot--active' : ''}`}
                 onClick={() => setCurrentTestimonial(index)}
-                aria-label={`Go to testimonial ${index + 1}`}
+                aria-label={`Go to slide ${index + 1}`}
               />
             ))}
           </div>
