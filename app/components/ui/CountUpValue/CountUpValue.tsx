@@ -1,47 +1,25 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import './CountUpValue.css'
 
 interface CountUpValueProps {
   value: string | number
   duration?: number
   className?: string
+  shouldAnimate?: boolean
 }
 
-export default function CountUpValue({ value, duration = 2000, className = '' }: CountUpValueProps) {
+export default function CountUpValue({ value, duration = 2000, className = '', shouldAnimate = false }: CountUpValueProps) {
   const [displayValue, setDisplayValue] = useState<string | number>(0)
   const [hasAnimated, setHasAnimated] = useState(false)
-  const elementRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    const element = elementRef.current
-    if (!element || hasAnimated) return
-
-    // Create an Intersection Observer that triggers only when element is 100% visible
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          // Only trigger when the element is fully in view (100% visible)
-          if (entry.isIntersecting && entry.intersectionRatio >= 1) {
-            setHasAnimated(true)
-            animateValue()
-            observer.unobserve(element)
-          }
-        })
-      },
-      {
-        threshold: 1.0, // Element must be 100% visible
-        rootMargin: '0px'
-      }
-    )
-
-    observer.observe(element)
-
-    return () => {
-      observer.disconnect()
+    if (shouldAnimate && !hasAnimated) {
+      setHasAnimated(true)
+      animateValue()
     }
-  }, [hasAnimated])
+  }, [shouldAnimate, hasAnimated])
 
   const animateValue = () => {
     const stringValue = String(value)
@@ -88,10 +66,7 @@ export default function CountUpValue({ value, duration = 2000, className = '' }:
   }
 
   return (
-    <div
-      ref={elementRef}
-      className={`count-up-value ${className} ${hasAnimated ? 'count-up-value--animated' : ''}`}
-    >
+    <div className={`count-up-value ${className} ${hasAnimated ? 'count-up-value--animated' : ''}`}>
       {displayValue}
     </div>
   )
