@@ -1,9 +1,104 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Navigation from '@/app/components/ui/Navigation/Navigation'
 import ContactForm from '@/app/components/ui/ContactForm/ContactForm'
 import './template-1.css'
+
+// Count-up animation hook
+function useCountUp(end: number, duration: number = 2000, isVisible: boolean = false) {
+  const [count, setCount] = useState(0)
+  const [hasAnimated, setHasAnimated] = useState(false)
+
+  useEffect(() => {
+    if (!isVisible || hasAnimated) return
+
+    setHasAnimated(true)
+    const startTime = Date.now()
+    const endValue = end
+
+    const animate = () => {
+      const now = Date.now()
+      const progress = Math.min((now - startTime) / duration, 1)
+
+      // Easing function for smooth animation
+      const easeOutQuart = 1 - Math.pow(1 - progress, 4)
+      const current = Math.floor(easeOutQuart * endValue)
+
+      setCount(current)
+
+      if (progress < 1) {
+        requestAnimationFrame(animate)
+      }
+    }
+
+    requestAnimationFrame(animate)
+  }, [end, duration, isVisible, hasAnimated])
+
+  return count
+}
+
+// Component to handle individual count-up values
+function CountUpValue({ value }: { value: string }) {
+  const [isVisible, setIsVisible] = useState(false)
+  const ref = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true)
+        }
+      },
+      { threshold: 0.1 }
+    )
+
+    if (ref.current) {
+      observer.observe(ref.current)
+    }
+
+    return () => {
+      if (ref.current) {
+        observer.unobserve(ref.current)
+      }
+    }
+  }, [])
+
+  // Parse the value to extract number, prefix, and suffix
+  const parseValue = (val: string) => {
+    // Match pattern like "$50M+", "25+", "5.0", "500+"
+    const match = val.match(/^(\$)?(\d+(?:\.\d+)?)(M|K|\+)?(\+)?$/i)
+
+    if (match) {
+      const prefix = match[1] || ''
+      const number = parseFloat(match[2])
+      const suffix = (match[3] || '') + (match[4] || '')
+      return { prefix, number, suffix }
+    }
+
+    // Fallback for plain numbers
+    const numMatch = val.match(/(\d+(?:\.\d+)?)/)
+    if (numMatch) {
+      return { prefix: '', number: parseFloat(numMatch[1]), suffix: '' }
+    }
+
+    return { prefix: '', number: 0, suffix: val }
+  }
+
+  const { prefix, number, suffix } = parseValue(value)
+  const currentCount = useCountUp(number, 2000, isVisible)
+
+  // Format the number (preserve decimal for values like 5.0)
+  const formattedNumber = value.includes('.')
+    ? currentCount.toFixed(1)
+    : currentCount.toString()
+
+  return (
+    <div ref={ref} className="hero-layout-1__trust-value">
+      {prefix}{formattedNumber}{suffix}
+    </div>
+  )
+}
 
 export default function PITemplate1() {
   const [activeFaq, setActiveFaq] = useState<number | null>(null)
@@ -201,19 +296,19 @@ export default function PITemplate1() {
           <div className="container">
             <div className="hero-layout-1__trust-items">
               <div className="hero-layout-1__trust-item">
-                <div className="hero-layout-1__trust-value">{templateData.resultsHighlight}</div>
+                <CountUpValue value={templateData.resultsHighlight} />
                 <div className="hero-layout-1__trust-label">Recovered for Clients</div>
               </div>
               <div className="hero-layout-1__trust-item">
-                <div className="hero-layout-1__trust-value">{templateData.yearsOfExperience}</div>
+                <CountUpValue value={templateData.yearsOfExperience} />
                 <div className="hero-layout-1__trust-label">Years Experience</div>
               </div>
               <div className="hero-layout-1__trust-item">
-                <div className="hero-layout-1__trust-value">5.0</div>
+                <CountUpValue value="5.0" />
                 <div className="hero-layout-1__trust-label">Client Rating</div>
               </div>
               <div className="hero-layout-1__trust-item">
-                <div className="hero-layout-1__trust-value">500+</div>
+                <CountUpValue value="500+" />
                 <div className="hero-layout-1__trust-label">Cases Won</div>
               </div>
             </div>
