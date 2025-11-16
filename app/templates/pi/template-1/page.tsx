@@ -213,13 +213,6 @@ export default function PITemplate1() {
     }
   ]
 
-  const caseResults = [
-    { amount: '$2.4M', type: 'Car Accident', description: 'Rear-end collision causing spinal injuries' },
-    { amount: '$1.8M', type: 'Medical Malpractice', description: 'Surgical error resulting in permanent disability' },
-    { amount: '$950K', type: 'Slip & Fall', description: 'Grocery store negligence causing hip fracture' },
-    { amount: '$750K', type: 'Workplace Injury', description: 'Construction site accident with multiple injuries' }
-  ]
-
   const processSteps = [
     {
       number: 1,
@@ -532,34 +525,6 @@ export default function PITemplate1() {
           </div>
         </div>
       </section>
-
-      {/* Case Results Section */}
-      {/* <section id="results" className="case-results">
-        <div className="container">
-          <div className="case-results__header">
-            <h2 className="case-results__title">Proven Results</h2>
-            <p className="case-results__subtitle">
-              We've recovered millions for our clients
-            </p>
-          </div>
-
-          <div className="case-results__grid">
-            {caseResults.map((result, index) => (
-              <div key={index} className={`case-result ${index === 0 ? 'case-result--featured' : ''}`}>
-                <div className="case-result__amount">{result.amount}</div>
-                <h3 className="case-result__type">{result.type}</h3>
-                <p className="case-result__description">{result.description}</p>
-              </div>
-            ))}
-          </div>
-
-          <div className="case-results__disclaimer">
-            <p className="case-results__disclaimer-text">
-              *Past results do not guarantee future outcomes. Each case is unique and results depend on specific facts and circumstances.
-            </p>
-          </div>
-        </div>
-      </section> */}
 
       {/* Process Section */}
       <section className="process">
