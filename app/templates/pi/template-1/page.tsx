@@ -103,9 +103,27 @@ function CountUpValue({ value }: { value: string }) {
 export default function PITemplate1() {
   const [activeFaq, setActiveFaq] = useState<number | null>(null)
   const [currentTestimonial, setCurrentTestimonial] = useState(0)
+  const [isMobile, setIsMobile] = useState(false)
   const logoText = 'Law Firm Name';
   const phoneNumber = '(555) 123-4567';
   const ctaText = 'CALL NOW';
+
+  // Detect mobile screen size
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768)
+    }
+
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
+
+  // Reset carousel position when switching between mobile/desktop
+  useEffect(() => {
+    setCurrentTestimonial(0)
+  }, [isMobile])
 
   // Placeholder data - Replace with real data
   const templateData = {
@@ -195,13 +213,6 @@ export default function PITemplate1() {
     }
   ]
 
-  const caseResults = [
-    { amount: '$2.4M', type: 'Car Accident', description: 'Rear-end collision causing spinal injuries' },
-    { amount: '$1.8M', type: 'Medical Malpractice', description: 'Surgical error resulting in permanent disability' },
-    { amount: '$950K', type: 'Slip & Fall', description: 'Grocery store negligence causing hip fracture' },
-    { amount: '$750K', type: 'Workplace Injury', description: 'Construction site accident with multiple injuries' }
-  ]
-
   const processSteps = [
     {
       number: 1,
@@ -249,12 +260,16 @@ export default function PITemplate1() {
   ]
 
   // Carousel navigation functions
+  // Number of testimonials to show at once (3 on desktop, 1 on mobile)
+  const testimonialsPerSlide = isMobile ? 1 : 3
+  const totalSlides = Math.ceil(testimonials.length / testimonialsPerSlide)
+
   const nextTestimonial = () => {
-    setCurrentTestimonial((prev) => (prev + 1) % testimonials.length)
+    setCurrentTestimonial((prev) => (prev + 1) % totalSlides)
   }
 
   const prevTestimonial = () => {
-    setCurrentTestimonial((prev) => (prev - 1 + testimonials.length) % testimonials.length)
+    setCurrentTestimonial((prev) => (prev - 1 + totalSlides) % totalSlides)
   }
 
   return (
@@ -425,12 +440,12 @@ export default function PITemplate1() {
           </div>
 
           <div className="testimonials__dots">
-            {testimonials.map((_, index) => (
+            {[...Array(totalSlides)].map((_, index) => (
               <button
                 key={index}
                 className={`testimonials__dot ${index === currentTestimonial ? 'testimonials__dot--active' : ''}`}
                 onClick={() => setCurrentTestimonial(index)}
-                aria-label={`Go to testimonial ${index + 1}`}
+                aria-label={`Go to slide ${index + 1}`}
               />
             ))}
           </div>
@@ -510,34 +525,6 @@ export default function PITemplate1() {
           </div>
         </div>
       </section>
-
-      {/* Case Results Section */}
-      {/* <section id="results" className="case-results">
-        <div className="container">
-          <div className="case-results__header">
-            <h2 className="case-results__title">Proven Results</h2>
-            <p className="case-results__subtitle">
-              We've recovered millions for our clients
-            </p>
-          </div>
-
-          <div className="case-results__grid">
-            {caseResults.map((result, index) => (
-              <div key={index} className={`case-result ${index === 0 ? 'case-result--featured' : ''}`}>
-                <div className="case-result__amount">{result.amount}</div>
-                <h3 className="case-result__type">{result.type}</h3>
-                <p className="case-result__description">{result.description}</p>
-              </div>
-            ))}
-          </div>
-
-          <div className="case-results__disclaimer">
-            <p className="case-results__disclaimer-text">
-              *Past results do not guarantee future outcomes. Each case is unique and results depend on specific facts and circumstances.
-            </p>
-          </div>
-        </div>
-      </section> */}
 
       {/* Process Section */}
       <section className="process">
